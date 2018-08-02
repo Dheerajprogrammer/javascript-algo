@@ -1,3 +1,48 @@
+/*************Basic Algorithm Scripting: Falsy Bouncer************************/
+function bouncer(arr) {
+  // Don't show a false ID to this bouncer.
+  var result =[];
+
+  for(var item of arr){
+    if(item){
+      result.push(item)
+    }
+  }
+
+  return result;
+}
+
+bouncer([7, "ate", "", false, 9]);
+
+
+
+///// solution 2 
+function bouncer(arr) {
+  // Don't show a false ID to this bouncer.
+  var result =[];
+
+ return arr.filter(function(item){
+   return item
+  })
+}
+
+bouncer([7, "ate", "", false, 9]);
+
+
+/*************Basic Algorithm Scripting: Mutations*************************/
+function mutation(arr) {
+  var firstWord = arr[0].toLowerCase();
+  var secondWord = arr[1].toLowerCase();
+  for(var i=0; i<secondWord.length; i++){
+    if(firstWord.indexOf(secondWord[i]) === -1) return false;
+  }
+
+  return true;
+}
+
+mutation(["hello", "hey"]);
+
+
 /***************Basic Algorithm Scripting: Chunky Monkey*************************/
 function chunkArrayInGroups(arr, size) {
   // Break it up.
