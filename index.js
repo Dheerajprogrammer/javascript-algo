@@ -1,3 +1,16 @@
+/***************Basic Algorithm Scripting: Chunky Monkey*************************/
+function chunkArrayInGroups(arr, size) {
+  // Break it up.
+  var group = [];
+  while(arr.length >0){
+    group.push(arr.slice(0, size));
+    arr = arr.slice(size);
+  }
+  return group;
+}
+
+chunkArrayInGroups(["a", "b", "c", "d"], 2);
+
 /***************JavaScript Algorithms and Data Structures Projects: Palindrome Checker*********************************/
 function palindrome(str) {
   // Good luck!
