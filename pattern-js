@@ -1,0 +1,133 @@
+var mysingeleton = (function(){
+var instance;
+  
+  function init(){
+  //singleton
+  //private method/variable
+  //
+  function privateMethod(){
+  console.log('I am private method');
+  }
+    var privateVar = "I am also private";
+    var privateRandom = Math.random();
+    return{
+    publicMethod: function(){
+    console.log('The Public can see me');
+    },
+      publicProperty: "I am also pubclic",
+      getRandom: function(){
+      return privateRandom;
+      }
+    }
+  }
+  return {
+  // get the Singleton instance if one exists
+  getInstance: function(){
+  if(!instance){
+  instance = init();
+  }
+    return instance;
+  }
+  }
+})();
+
+
+var SingleA = mysingeleton.getInstance();
+var SingleB = mysingeleton.getInstance();
+
+var SingleC = mysingeleton.getInstance();
+var SingleD = mysingeleton.getInstance();
+
+console.log(SingleA.publicProperty);
+console.log(SingleA.getRandom() ===SingleB.getRandom());
+console.log(SingleC.getRandom() ===SingleD.getRandom());
+
+
+/************Factory Pattern********************/
+var peopleFactory = function(name, age, state){
+  var temp ={};
+  temp.name=name;
+  temp.age=age;
+  temp.state=state;
+  
+  temp.printPerson = function(){
+  console.log(this.name+ ',' + this.age + ',' + this.state);
+  }
+  
+  return temp;
+}
+
+
+var Person1 = peopleFactory("Dheeraj",27,"Punjab");
+var Person2 = peopleFactory("Swati",26,"Punjab");
+var Person3 = peopleFactory("DK",27,"Banglore");
+
+Person1.printPerson();
+Person2.printPerson();
+Person3.printPerson();
+
+/*************constructor pattern****************************/
+
+
+var peopleConstructor = function(name, age, state){
+  this.name=name;
+  this.age=age;
+  this.state=state;
+  
+  this.printPerson = function(){
+  console.log(this.name+ ',' + this.age + ',' + this.state);
+  }
+}
+
+
+var Person1 = new peopleConstructor("Dheeraj",27,"Punjab");
+var Person2 = new peopleConstructor("Swati",26,"Punjab");
+var Person3 = new peopleConstructor("DK",27,"Banglore");
+
+Person1.printPerson();
+Person2.printPerson();
+Person3.printPerson();
+
+/*********************Prototype pattern***************************************/
+
+var peopleProto = function(){
+}
+
+  peopleProto.prototype.name='No name';
+  peopleProto.prototype.age=0;
+  peopleProto.prototype.state='Punjab';
+  
+  peopleProto.prototype.printPerson = function(){
+      console.log(this.name+ ',' + this.age + ',' + this.state);
+  }
+  
+
+
+var Person1 = new peopleProto();
+
+Person1.name ='Dheeraj';
+Person1.age =27;
+Person1.state ='Karnataka';
+
+Person1.printPerson();
+
+/********************Dynamic Prototype Pattern**************************************/
+
+var peopleDynamicProto = function(name,age,state){
+    this.age = age;
+    this.name = name;
+    this.state = state;
+
+    if( typeof this.printPerson !== 'function'){    
+    peopleDynamicProto.prototype.printPerson = function(){
+        console.log(this.name+ ',' + this.age + ',' + this.state);
+      }
+    }
+  }
+
+
+
+
+  var Person1 = new peopleDynamicProto("Dheeraj",27,"Punjab");
+
+  Person1.printPerson();
